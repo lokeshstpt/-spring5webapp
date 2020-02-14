@@ -16,6 +16,9 @@ public class Address {
     private String state;
     private int zip;
 
+    public Address(){
+
+    }
     public Address(String addressLine, String city, String state, int zip) {
         this.addressLine = addressLine;
         this.city = city;

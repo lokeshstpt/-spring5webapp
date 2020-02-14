@@ -1,6 +1,8 @@
 package lokesh.springframework.spring5webapp.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Publisher {
@@ -12,6 +14,14 @@ public class Publisher {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
+
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> bookSet = new HashSet<Book>();
+
+    public Publisher() {
+
+    }
 
     public Publisher(String name, Address address) {
         this.name=name;
@@ -55,6 +65,14 @@ public class Publisher {
     @Override
     public int hashCode() {
         return Id != null ? Id.hashCode() : 0;
+    }
+
+    public Set<Book> getBookSet() {
+        return bookSet;
+    }
+
+    public void setBookSet(Set<Book> bookSet) {
+        this.bookSet = bookSet;
     }
 
     @Override
